@@ -102,9 +102,9 @@ Capistrano::Configuration.instance(:must_exist).load do
         end
         
         # copy keys to remote server
-        deprec2.mkdir "~#{target_user}/.ssh", :mode => 0700, :owner => "#{target_user}.users", :via => :sudo
+        deprec2.mkdir "~#{target_user}/.ssh", :mode => 0700, :owner => "#{target_user}:", :via => :sudo
         std.su_put "#{keys}\n", "~#{target_user}/.ssh/authorized_keys", '/tmp/', :mode => 0600
-        sudo "chown #{target_user}.users ~#{target_user}/.ssh/authorized_keys"
+        sudo "chown #{target_user}: ~#{target_user}/.ssh/authorized_keys"
       end
 
     end
